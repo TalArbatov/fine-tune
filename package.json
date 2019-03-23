@@ -1,0 +1,19 @@
+{
+  "name": "fine-tune",
+  "version": "1.0.0",
+  "description": "An secure example application built with MongoDB/Express/React/Redux",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TalArbatov/fine-tune.git"
+  },
+  "author": "Tal Arbetov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TalArbatov/fine-tune/issues"
+  },
+  "homepage": "https://github.com/TalArbatov/fine-tune#readme"
+}
