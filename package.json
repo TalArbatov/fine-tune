@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "devServer": "webpack-dev-server --hot --open --mode development --content-base client/public",
-    "build:client": "webpack --watch"
+    "build:client": "webpack --watch",
+    "build:server": "nodemon server/app"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
     "express": "^4.16.4",
     "helmet": "^3.16.0",
     "mongoose": "^5.4.19",
+    "nodemon": "^1.18.10",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-redux": "^6.0.1",
