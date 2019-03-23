@@ -4,7 +4,9 @@
   "description": "An secure example application built with MongoDB/Express/React/Redux",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "devServer": "webpack-dev-server --hot --open --mode development --content-base client/public",
+    "build:client": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,18 @@
   "bugs": {
     "url": "https://github.com/TalArbatov/fine-tune/issues"
   },
-  "homepage": "https://github.com/TalArbatov/fine-tune#readme"
+  "homepage": "https://github.com/TalArbatov/fine-tune#readme",
+  "dependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
+  }
 }
