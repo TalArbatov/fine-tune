@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {connect} from 'react-redux';
 import * as ACTIONS from '../../actions/actionGenerators';
-import Logout from './Logout';
 const initialLogin = {
   username: "",
   password: ""
@@ -31,22 +30,10 @@ const Login = props => {
 
       <button onClick={() => submitForm()}>Login</button>
 
-      <Logout />
     </div>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    userReduer: state.userReducer
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    login : (user) => dispatch(ACTIONS.login(user))
-  }
-}
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login

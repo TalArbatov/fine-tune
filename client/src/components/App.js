@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import Navbar from './Navbar/Navbar';
-import Login from './Auth/Login';
-import Register from './Auth/Register';
+// import Login from './Auth/Login';
+// import Register from './Auth/Register';
+import Auth from './Auth/Auth';
 import {Switch, Link, Route} from 'react-router-dom';
 import Dashboard from './Dashboard/Dashboard';
 
@@ -9,10 +10,11 @@ const App = props => {
   return(
     <div>
       <Navbar />
+      <Auth />
       <Switch>
-        <Route exact path='/' component={Dashboard}></Route>
+        {/* <Route exact path='/' component={Dashboard}></Route>
         <Route path='/login' component={Login}></Route>
-        <Route path='/register' component={Register}></Route>
+        <Route path='/register' component={Register}></Route> */}
       </Switch>
     </div>
   )

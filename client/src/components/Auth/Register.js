@@ -44,17 +44,4 @@ const Register = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    userReduer: state.userReducer
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    register : (user) => dispatch(ACTIONS.register(user))
-  }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default Register;
