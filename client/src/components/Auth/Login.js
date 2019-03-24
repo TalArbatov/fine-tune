@@ -1,10 +1,52 @@
-import React from 'react';
+import React, { useState } from "react";
+import {connect} from 'react-redux';
+import * as ACTIONS from '../../actions/actionGenerators';
+import Logout from './Logout';
+const initialLogin = {
+  username: "",
+  password: ""
+};
 
 const Login = props => {
-  return(
+  const [getLogin, setLogin] = useState(initialLogin);
+  const onInputChange = (input, type) => {
+    console.log(`${type} : ${input}`);
+    setLogin({ ...getLogin, [type]: input });
+  };
+
+  const submitForm = () => {
+    console.log(getLogin)
+    props.login(getLogin);
+  }
+
+  return (
     <div>
-      <h1>Login</h1>
+      <h3>Login: </h3>
+      
+      <label>Username: </label>
+      <input type="text" onChange={e => onInputChange(e.target.value, "username")} />
+      <br/>
+      <label>Password: </label>
+      <input type="text" onChange={e => onInputChange(e.target.value, "password")} />
+
+      <button onClick={() => submitForm()}>Login</button>
+
+      <Logout />
     </div>
-  )
+  );
+};
+
+const mapStateToProps = state => {
+  return {
+    userReduer: state.userReducer
+  }
 }
-export default Login;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    login : (user) => dispatch(ACTIONS.login(user))
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
