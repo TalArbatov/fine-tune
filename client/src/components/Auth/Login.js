@@ -2,22 +2,26 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import * as ACTIONS from "../../actions/actionGenerators";
 import styled from "styled-components";
+import PropTypes from "prop-types";
+import AppContext from '../contexts/themeContext';
+
 const initialLogin = {
   username: "",
   password: ""
 };
 
 const Form = styled.div`
-display: flex;
-justify-content: center;
-flex-direction: row;
-text-align:center;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  text-align: center;
 `;
 
-
-const Login = props => {
+const Login = (props, context) => {
+  console.log("context");
+  console.log(context);
   const [getLogin, setLogin] = useState(initialLogin);
-  console.log(getLogin)
+  console.log(getLogin);
   const onInputChange = (input, type) => {
     setLogin({ ...getLogin, [type]: input });
   };
@@ -26,9 +30,8 @@ const Login = props => {
     props.login(getLogin);
   };
 
-
   return (
-    <Form key='1'>
+    <Form key="1">
       <div>
         <h3>Login: </h3>
 
@@ -39,7 +42,8 @@ const Login = props => {
                 <label>Username: </label>
               </td>
               <td>
-                <input key='1'
+                <input
+                  key="1"
                   value={getLogin.username}
                   type="text"
                   onChange={e => onInputChange(e.target.value, "username")}
@@ -59,7 +63,11 @@ const Login = props => {
             </tr>
           </tbody>
         </table>
-
+         <AppContext.Consumer>
+        {(context) => (<div>
+          <p>username: {context.primary}</p>
+        </div>)}
+        </AppContext.Consumer>
         <button onClick={() => submitForm()}>Login</button>
         <p style={{ color: "red" }}>{props.errMsg}</p>
       </div>

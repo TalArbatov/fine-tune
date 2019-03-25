@@ -1,9 +1,9 @@
-import React from "react";
+import React, {Suspense} from "react";
 import { connect } from "react-redux";
 import * as ACTIONS from "../../actions/actionGenerators";
 import Logout from "./Logout";
 import Login from "./Login";
-import Register from "./Register";
+import Register from "./LazyRegister";
 
 class Auth extends React.Component {
   state = {
