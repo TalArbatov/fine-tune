@@ -1,39 +1,70 @@
 import React, { useState } from "react";
-import {connect} from 'react-redux';
-import * as ACTIONS from '../../actions/actionGenerators';
+import { connect } from "react-redux";
+import * as ACTIONS from "../../actions/actionGenerators";
+import styled from "styled-components";
 const initialLogin = {
   username: "",
   password: ""
 };
 
+const Form = styled.div`
+display: flex;
+justify-content: center;
+flex-direction: row;
+text-align:center;
+`;
+
+
 const Login = props => {
   const [getLogin, setLogin] = useState(initialLogin);
+  console.log(getLogin)
   const onInputChange = (input, type) => {
-    console.log(`${type} : ${input}`);
     setLogin({ ...getLogin, [type]: input });
   };
 
   const submitForm = () => {
-    console.log(getLogin)
     props.login(getLogin);
-  }
+  };
+
 
   return (
-    <div>
-      <h3>Login: </h3>
-      
-      <label>Username: </label>
-      <input type="text" onChange={e => onInputChange(e.target.value, "username")} />
-      <br/>
-      <label>Password: </label>
-      <input type="text" onChange={e => onInputChange(e.target.value, "password")} />
+    <Form key='1'>
+      <div>
+        <h3>Login: </h3>
 
-      <button onClick={() => submitForm()}>Login</button>
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <label>Username: </label>
+              </td>
+              <td>
+                <input key='1'
+                  value={getLogin.username}
+                  type="text"
+                  onChange={e => onInputChange(e.target.value, "username")}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>Password: </label>
+              </td>
+              <td>
+                <input
+                  type="password"
+                  onChange={e => onInputChange(e.target.value, "password")}
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-    </div>
+        <button onClick={() => submitForm()}>Login</button>
+        <p style={{ color: "red" }}>{props.errMsg}</p>
+      </div>
+    </Form>
   );
 };
 
-
-
-export default Login
+export default Login;

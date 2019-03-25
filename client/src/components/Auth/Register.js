@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import {connect} from 'react-redux';
-import * as ACTIONS from '../../actions/actionGenerators';
+import { connect } from "react-redux";
+import * as ACTIONS from "../../actions/actionGenerators";
+import styled from 'styled-components'
 const initialRegister = {
   firstName: "",
   lastName: "",
@@ -8,39 +9,110 @@ const initialRegister = {
   username: "",
   password: ""
 };
+const Form = styled.div`
+display: flex;
+justify-content: center;
+flex-direction: row;
+text-align:center;
+`;
+
 
 const Register = props => {
   const [getRegister, setRegister] = useState(initialRegister);
   const onInputChange = (input, type) => {
-    console.log(`${type} : ${input}`);
     setRegister({ ...getRegister, [type]: input });
   };
 
   const submitForm = () => {
-    console.log(getRegister)
     props.register(getRegister);
-  }
+  };
 
+  let errMsg;
+
+  if (props.errMsg.server != "")
+    errMsg = <p style={{ color: "red" }}>{props.errMsg.server}</p>;
+
+  if (props.errMsg.client != "")
+    errMsg = <p style={{ color: "red" }}>{props.errMsg.client}</p>;
   return (
-    <div>
-      <h3>Register: </h3>
-      <label>First Name: </label>
-      <input type="text" onChange={e => onInputChange(e.target.value, "firstName")} />
-      <br/>
-      <label>Last Name: </label>
-      <input type="text" onChange={e => onInputChange(e.target.value, "lastName")} />
-      <br/>
-      <label>Email: </label>
-      <input type="text" onChange={e => onInputChange(e.target.value, "email")} />
-      <br/>
-      <label>Username: </label>
-      <input type="text" onChange={e => onInputChange(e.target.value, "username")} />
-      <br/>
-      <label>Password: </label>
-      <input type="text" onChange={e => onInputChange(e.target.value, "password")} />
+    <Form>
 
+      <div>
+      <h3>Register: </h3>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <label>First Name: </label>
+            </td>
+            <td>
+              <input
+                type="text"
+                onChange={e => onInputChange(e.target.value, "firstName")}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Last Name: </label>
+            </td>
+            <td>
+              <input
+                type="text"
+                onChange={e => onInputChange(e.target.value, "lastName")}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Email: </label>
+            </td>
+            <td>
+              <input
+                type="text"
+                onChange={e => onInputChange(e.target.value, "email")}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Username: </label>
+            </td>
+            <td>
+              <input
+                type="text"
+                onChange={e => onInputChange(e.target.value, "username")}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Password: </label>
+            </td>
+            <td>
+              <input
+                type="password"
+                onChange={e => onInputChange(e.target.value, "password")}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Confirm password: </label>
+            </td>
+            <td>
+              <input
+                type="password"
+                onChange={e => onInputChange(e.target.value, "confirmPassword")}
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <button onClick={() => submitForm()}>Register</button>
-    </div>
+      <div>{errMsg && errMsg}</div>
+      </div>
+    </Form>
   );
 };
 
