@@ -14,7 +14,7 @@ mongoose.connect(process.env.DB_ADDRESS,{useNewUrlParser: true} , () => {
   console.log(`SUCCESSFULLY CONNECTED: DB_ADDRESS ${process.env.DB_ADDRESS}`)
 });
 require('./models/UserSchema');
-
+require('./models/PostSchema');
 
 //EXPRESS SETUP
 const PORT = process.env.PORT || 3000;
@@ -68,9 +68,9 @@ app.use(require('./routes'));
 // }
 
 
-// //PASSPORT SETUP
-// const configurePassport = require('./config/passport');
-// configurePassport(app, passport)
+//PASSPORT SETUP
+const configurePassport = require('./config/passport');
+configurePassport(app, passport)
 
 
 app.listen(PORT, () => {

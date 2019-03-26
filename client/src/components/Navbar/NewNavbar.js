@@ -39,12 +39,16 @@ const NewNavbar = props => {
 
       {!props.userReducer.authenticated ? (
         <MenuList>
+           <Link to="/forum">
+            <p>Forum</p>
+          </Link>
           <Link to="/login">
             <p>Login</p>
           </Link>
           <Link to="/register">
             <p>Register</p>
           </Link>
+         
         </MenuList>
       ) : (
         <MenuList>

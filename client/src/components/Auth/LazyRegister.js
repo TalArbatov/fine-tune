@@ -4,9 +4,11 @@ const Register = React.lazy(() => import("./Register"));
 
 const LazyRegister = props => {
   return (
+    <>
     <Suspense fallback={<div>Loading...</div>}>
-      <Register />
+      <Register register={props.register} errMsg={props.errMsg}/>
     </Suspense>
+    </>
   );
 };
 

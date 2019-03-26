@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import * as ACTIONS from "../../actions/actionGenerators";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import AppContext from '../contexts/themeContext';
+import AppContext from '../../contexts/themeContext';
 
 const initialLogin = {
   username: "",
