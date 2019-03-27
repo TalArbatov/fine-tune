@@ -1,9 +1,44 @@
 import * as TYPES from "./actionTypes";
 import axios from "axios";
 
+export const fetchPost = (id) => {
+  return dispatch => {
+    dispatch(fetchPostRequest())
+    return axios.get('/api/posts/' + id).then(res => {
+      if(res.data.success) {
+        dispatch(fetchPostSuccess(res.data.payload))
+        return {success: true}
+      }
+      else {
+        dispatch(fetchPostError())
+        return {success: false}
+      }
+    }).catch(err => {
+      dispatch(fetchPostError())
+        return {success: false}
+    })
+  }
+}
+
+export const fetchPostSuccess = (post) => {
+  return {
+    type:TYPES.FETCH_POST_SUCCEESS,
+    post
+  }
+}
+export const fetchPostRequest = () => {
+  return {
+    type:TYPES.FETCH_POST_REQUEST,
+  }
+}
+export const fetchPostError = () => {
+  return {
+    type:TYPES.FETCH_POST_ERROR,
+  }
+}
+
 export const fetchPosts = () => {
   return dispatch => {
-    
     return axios
       .get("/api/posts")
       .then(res => {

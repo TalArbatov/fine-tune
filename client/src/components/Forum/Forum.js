@@ -21,11 +21,15 @@ class Forum extends React.Component {
     };
     this.props.createPost(newPost);
   };
+
+  getPost = (id) => {
+    this.props.fetchPost(id);
+  }
   render() {
     return (
       <div>
         <NewPost createPost={post => createPost(post)} />
-        <ViewPosts posts={this.props.forumReducer.posts} />
+        <ViewPosts getPost={this.getPost} posts={this.props.forumReducer.posts} />
       </div>
     );
   }
@@ -41,7 +45,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     createPost: post => dispatch(ACTIONS.createPost(post)),
-    fetchPosts: () => dispatch(ACTIONS.fetchPosts())
+    fetchPosts: () => dispatch(ACTIONS.fetchPosts()),
+    fetchPost: (id) => dispatch(ACTIONS.fetchPost(id))
   };
 };
 

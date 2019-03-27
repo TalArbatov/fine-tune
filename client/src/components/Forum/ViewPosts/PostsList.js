@@ -6,7 +6,7 @@ export default props => {
   return (
     <div>
       {props.posts.map((post, index) => {
-        return <PostItem key={index} post={post} />;
+        return <PostItem getPost={props.getPost} key={index} post={post} />;
       })}
     </div>
   );

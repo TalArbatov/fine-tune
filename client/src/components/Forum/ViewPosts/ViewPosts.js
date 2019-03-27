@@ -4,7 +4,7 @@ const ViewPosts = props => {
   return(
     <div>
       <h4>View Posts: </h4>
-      <PostsList posts={props.posts}/>
+      <PostsList getPost={props.getPost} posts={props.posts}/>
     </div>
   )
 }

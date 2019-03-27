@@ -6,9 +6,10 @@ import Auth from "./Auth/Auth";
 import { Switch, Link, Route } from "react-router-dom";
 import Dashboard from "./Dashboard/Dashboard";
 import Forum from './Forum/Forum'
-
+import ViewPost from './Forum/ViewPost/ViewPost';
 import AppContext from '../contexts/themeContext';
 import themes from '../themes/globalStyle';
+
 const user = {
   name: 'Tal Arbatov',
   username: 'TestUsername',
@@ -25,6 +26,7 @@ const App = props => {
           <Route path="/login" component={() => <Auth auth="login" />} />
           <Route path="/register" component={() => <Auth auth="register" />} />
           <Route path="/forum" component={() => <Forum />} />
+          <Route path="/post/:id" component={() => <ViewPost />} />
         </Switch>
       </AppContext.Provider>
     </div>

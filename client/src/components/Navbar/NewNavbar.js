@@ -36,12 +36,12 @@ const NewNavbar = props => {
       <div>
         <p>Fine Tune</p>
       </div>
-
-      {!props.userReducer.authenticated ? (
-        <MenuList>
-           <Link to="/forum">
+      <Link to="/forum">
             <p>Forum</p>
           </Link>
+      {!props.userReducer.authenticated ? (
+        <MenuList>
+           
           <Link to="/login">
             <p>Login</p>
           </Link>

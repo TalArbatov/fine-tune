@@ -2,12 +2,18 @@ import * as TYPES from "../actions/actionTypes";
 
 const defaultState = {
   posts: [],
-  selectedPost: '',
+  selectedPost: {},
   isLoading: false
 };
 
 const forumReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case TYPES.FETCH_POST_REQUEST:
+      return {...state, isLoading: true}
+    case TYPES.FETCH_POST_SUCCEESS:
+      return {...state, isLoading: false, selectedPost: action.post}
+    case TYPES.FETCH_POST_ERROR:
+      return {...state, isLoading: false, selectedPost: {}}
     case TYPES.FETCH_POSTS_REQUEST:
       return {...state, isLoading: true}
     case TYPES.FETCH_POSTS_SUCCEESS: 
