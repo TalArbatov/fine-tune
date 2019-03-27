@@ -16,10 +16,10 @@ router.get("/:_id", (req, res) => {
   Post.findOne({ _id: req.params._id }, (err, post) => {
     if (!err) {
       res.send({ success: true, payload: post });
-      console.log(post)
+      //console.log(post)
     } else {
       res.status(500).send({ success: false, err });
-      console.log(err);
+      //console.log(err);
     }
   });
 });
@@ -39,5 +39,24 @@ router.post("/", (req, res) => {
     else res.status(500).send({ success: false, err });
   });
 });
+
+router.delete('/:_id', (req,res,next) => {
+    Post.findOneAndDelete({_id: req.params._id}, (err, data) => {
+        if(!err) res.send({success: true})
+        else res.send({success:false, payload: err})
+    })
+})
+
+router.put('/:id', (req,res,next) => {
+    Post.findOneAndUpdate({_id: req.params._id}, {$set: {title: req.body.title, content: req.body.comment}}, (err, doc, res) => {
+        console.log('err')
+        console.log(err);
+        console.log('doc');
+        console.log(doc);
+        console.log('res');
+        console.log(res);
+    })
+
+})
 
 module.exports = router;

@@ -1,6 +1,44 @@
 import * as TYPES from "./actionTypes";
 import axios from "axios";
 
+export const deletePost = id => {
+  return dispatch => {
+    dispatch(deletePostRequest());
+    return axios.delete('/api/posts/' + id).then(res => {
+      if(res.data.success) {
+        console.log(res)
+        dispatch(deletePostSuccess(id));
+        return {success: true}
+      }
+      else {
+        console.log(res)
+        dispatch(deletePostError());
+        return {success: false}
+      }
+    }).catch(err => {
+      dispatch(deletePostError());
+      return {success: false, payload: err}
+    })
+  }
+}
+
+export const deletePostRequest = () => {
+  return {
+    type:TYPES.DELETE_POST_REQUEST
+  }
+}
+export const deletePostSuccess = (id) => {
+  return {
+    type:TYPES.DELETE_POST_SUCCESS,
+    id
+  }
+}
+export const deletePostError = () => {
+  return {
+    type:TYPES.DELETE_POST_ERROR
+  }
+}
+
 export const fetchPost = (id) => {
   return dispatch => {
     dispatch(fetchPostRequest())

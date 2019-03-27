@@ -8,6 +8,15 @@ const defaultState = {
 
 const forumReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case TYPES.DELETE_POST_REQUEST:
+      return {...state, isLoading: true}
+    case TYPES.DELETE_POST_ERROR:
+      return {...state, isLoading: false}
+    case TYPES.DELETE_POST_SUCCESS:
+      const newPosts = state.posts.filter(post => {
+        return post._id != action.id
+      })
+      return {...state, isLoading: false, posts: newPosts}
     case TYPES.FETCH_POST_REQUEST:
       return {...state, isLoading: true}
     case TYPES.FETCH_POST_SUCCEESS:
