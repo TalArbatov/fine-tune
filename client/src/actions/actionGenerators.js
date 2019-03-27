@@ -1,6 +1,75 @@
 import * as TYPES from "./actionTypes";
 import axios from "axios";
 
+export const fetchPosts = () => {
+  return dispatch => {
+    
+    return axios
+      .get("/api/posts")
+      .then(res => {
+        console.log(res.data);
+        if (res.data.success) {
+          dispatch(fetchPostsSuccess(res.data.payload));
+          return { success: true };
+        } else {
+          dispatch(fetchPostsError());
+          return { success: false };
+        }
+      })
+      .catch(dispatch(fetchPostsError()));
+  };
+};
+export const fetchPostsRequest = () => {
+  return {
+    type: TYPES.FETCH_POSTS_REQUEST
+  };
+};
+export const fetchPostsSuccess = posts => {
+  return {
+    type: TYPES.FETCH_POSTS_SUCCEESS,
+    posts
+  };
+};
+export const fetchPostsError = () => {
+  return {
+    type: TYPES.FETCH_POSTS_ERROR
+  };
+};
+export const createPost = post => {
+  return dispatch => {
+    dispatch(createPostRequest())
+    return axios.post("/api/posts", post).then(res => {
+      console.log(res);
+      if (res.success) {
+        dispatch(createPostSuccess(post));
+        return "success!";
+      } else {
+        dispatch(createPostError());
+        return "errror!";
+      }
+    });
+  };
+};
+
+export const createPostRequest = () => {
+  return {
+    type: TYPES.CREATE_POST_REQUEST,
+  };
+};
+
+export const createPostSuccess = post => {
+  return {
+    type: TYPES.CREATE_POST_SUCCESS,
+    post
+  };
+};
+
+export const createPostError = () => {
+  return {
+    type: TYPES.CREATE_POST_ERROR
+  };
+};
+
 export const register = user => {
   return dispatch => {
     dispatch(registerRequest());
@@ -9,10 +78,9 @@ export const register = user => {
       if (res.data.success) {
         dispatch(registerSuccess(user));
         dispatch(login(user));
-      }
-      else {
+      } else {
         dispatch(registerError());
-        return res.data.message
+        return res.data.message;
       }
     });
   };
@@ -35,7 +103,7 @@ export const registerError = () => {
 };
 
 export const login = user => {
-  let errMsg = 'fuck';
+  let errMsg = "fuck";
   return dispatch => {
     dispatch(loginRequest());
     return axios.post("/api/auth/login", user).then(res => {
@@ -44,10 +112,8 @@ export const login = user => {
       else {
         dispatch(loginError());
         errMsg = res.data.message;
-        return errMsg  
+        return errMsg;
       }
-      
-
     });
   };
 };

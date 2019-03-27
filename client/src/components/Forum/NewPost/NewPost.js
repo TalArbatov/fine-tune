@@ -7,11 +7,11 @@ const defaultPost = {
 
 const NewPost = props => {
     const [getPost, setPost] = useState(defaultPost)
-    onChangeHandler = (input, type) => {
+    const onChangeHandler = (input, type) => {
         console.log(type + " : " + input);
         setPost({...getPost, [type]: input})
     }
-    onSubmitHandler = () => {
+    const onSubmitHandler = () => {
         console.log(getPost);
         props.createPost(getPost);
     }
@@ -25,10 +25,10 @@ const NewPost = props => {
                 <label>Content:</label>
                 <input type='text' onChange={e => onChangeHandler(e.target.value, 'content')}></input>
                 <br />
-                <button onClick={() => onSubmitPost()}>Submit</button>
+                <button onClick={() => onSubmitHandler()}>Submit</button>
             </div>
         </div>
     )
 }
 
-export const NewPost;
+export default NewPost;

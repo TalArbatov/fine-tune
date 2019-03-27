@@ -19,6 +19,7 @@ router.get('/:id', (req,res) => {
 });
 
 router.post('/', (req,res) => {
+    console.log('creating new post...')
     const {title, content, dateCreated, id, author} = req.body;
     const newPost = new Post({
         title, content, dateCreated, id, author
